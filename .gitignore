@@ -1,12 +1,13 @@
 # Prerequisites
 *.d
-
+/Examples\ST\STM3240G-EVAL\OS2\IAR\FLASH
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
-
+*.pbi
+*.xcl
 # Linker output
 *.ilk
 *.map

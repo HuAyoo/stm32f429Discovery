@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>OS2/FLASH</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1799</ColumnWidth1></Debug-Log>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>308</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1349</ColumnWidth1><ColumnWidth2>359</ColumnWidth2><ColumnWidth3>89</ColumnWidth3></Build>
+      <TerminalIO/>
+    <Find-All-References><ColumnWidth0>642</ColumnWidth0><ColumnWidth1>91</ColumnWidth1><ColumnWidth2>1101</ColumnWidth2></Find-All-References></Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-31054-22593</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>OS2</ExpandedNode><ExpandedNode>OS2/APP</ExpandedNode><ExpandedNode>OS2/APP/Serial</ExpandedNode><ExpandedNode>OS2/BSP</ExpandedNode><ExpandedNode>OS2/BSP/CMSIS</ExpandedNode><ExpandedNode>OS2/BSP/IAR</ExpandedNode><ExpandedNode>OS2/BSP/OS</ExpandedNode><ExpandedNode>OS2/BSP/OS/uCOS-II</ExpandedNode><ExpandedNode>OS2/STM32CubeF4</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-9034-22596</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-2887-23530</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-19647-26046</Identity><TabName>References</TabName><Factory>Find-All-References</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>1</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Ports\ARM-Cortex-M4\Generic\IAR\os_cpu_c.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>183</YPos2><SelStart2>8182</SelStart2><SelEnd2>8182</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app_serial.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>153</YPos2><SelStart2>6249</SelStart2><SelEnd2>6249</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Source\os_core.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>1781</YPos2><SelStart2>76566</SelStart2><SelEnd2>76566</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Ports\ARM-Cortex-M4\Generic\IAR\os_cpu_a.asm</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>137</YPos2><SelStart2>6523</SelStart2><SelEnd2>6523</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app_hooks.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>138</YPos2><SelStart2>6546</SelStart2><SelEnd2>6546</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>269</YPos2><SelStart2>11212</SelStart2><SelEnd2>11212</SelEnd2></Tab><ActiveTab>5</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00F75220><key>iaridepm.enu1</key></Toolbar-00F75220></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes><Toolbar-10AFECF8><key>debuggergui.enu1</key></Toolbar-10AFECF8></Sizes></Row2><Row3><Sizes><Toolbar-148C69E0><key>armjlink2.enu1</key></Toolbar-148C69E0></Sizes></Row3></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>798</Bottom><Right>399</Right><x>-2</x><y>-2</y><xscreen>98</xscreen><yscreen>197</yscreen><sizeHorzCX>52745</sizeHorzCX><sizeHorzCY>189788</sizeHorzCY><sizeVertCX>215823</sizeVertCX><sizeVertCY>770713</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>195</Bottom><Right>1860</Right><x>-2</x><y>-2</y><xscreen>1862</xscreen><yscreen>197</yscreen><sizeHorzCX>1002153</sizeHorzCX><sizeHorzCY>189788</sizeHorzCY><sizeVertCX>52745</sizeVertCX><sizeVertCY>189788</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

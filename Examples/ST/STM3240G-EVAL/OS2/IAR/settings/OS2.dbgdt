@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1799</ColumnWidth1></Debug-Log>
+      <Build>
+        <ColumnWidth0>20</ColumnWidth0>
+        <ColumnWidth1>1349</ColumnWidth1>
+        <ColumnWidth2>359</ColumnWidth2>
+        <ColumnWidth3>89</ColumnWidth3>
+      </Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>323</Column0><Column1>22</Column1><Column2>16</Column2><Column3>0</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        <col-names>
+          
+          
+        <item>Disassembly</item><item>_I0</item></col-names>
+        <col-widths>
+          
+          
+        <item>500</item><item>20</item></col-widths>
+        <DisasmHistory/>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+        
+        
+      <ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
+      <WATCH_1>
+        <expressions>
+          
+          
+          
+          
+          
+          
+          
+        <item>OSIdleCtr</item><item></item></expressions>
+        <col-names>
+          
+          
+          
+          
+        <item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names>
+        <col-widths>
+          
+          
+          
+          
+        <item>100</item><item>150</item><item>100</item><item>100</item></col-widths>
+      <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows></WATCH_1>
+    <Select-Ambiguous-Definitions><ColumnWidth0>642</ColumnWidth0><ColumnWidth1>91</ColumnWidth1><ColumnWidth2>1101</ColumnWidth2></Select-Ambiguous-Definitions><Find-in-Files><ColumnWidth0>550</ColumnWidth0><ColumnWidth1>91</ColumnWidth1><ColumnWidth2>826</ColumnWidth2><ColumnWidth3>367</ColumnWidth3></Find-in-Files><CallStack><PreferedWindows><Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><col-names><item>Frame</item><item>_I0</item></col-names><col-widths><item>3500</item><item>20</item></col-widths></CallStack></Static>
+    <Windows>
+      
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-23296-24990</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-22773-25000</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-25043-30448</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab><Tab><Identity>TabID-18540-30774</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-1277-24993</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>OS2</ExpandedNode><ExpandedNode>OS2/APP</ExpandedNode><ExpandedNode>OS2/APP/Serial</ExpandedNode><ExpandedNode>OS2/BSP</ExpandedNode><ExpandedNode>OS2/BSP/CMSIS</ExpandedNode><ExpandedNode>OS2/BSP/IAR</ExpandedNode><ExpandedNode>OS2/BSP/OS</ExpandedNode><ExpandedNode>OS2/BSP/OS/uCOS-II</ExpandedNode><ExpandedNode>OS2/STM32CubeF4</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include</ExpandedNode><ExpandedNode>OS2/STM32CubeF4/Drivers/STM32F4xx_HAL_Driver</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00F75220><key>iaridepm.enu1</key></Toolbar-00F75220></Sizes></Row0><Row1><Sizes><Toolbar-10AFECF8><key>debuggergui.enu1</key></Toolbar-10AFECF8><Toolbar-148C69E0><key>armjlink2.enu1</key></Toolbar-148C69E0></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>692</Bottom><Right>398</Right><x>-2</x><y>-2</y><xscreen>407</xscreen><yscreen>203</yscreen><sizeHorzCX>445783</sizeHorzCX><sizeHorzCY>198630</sizeHorzCY><sizeVertCX>438116</sizeVertCX><sizeVertCY>679061</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>261</Bottom><Right>915</Right><x>-2</x><y>-2</y><xscreen>917</xscreen><yscreen>263</yscreen><sizeHorzCX>1004381</sizeHorzCX><sizeHorzCY>257339</sizeHorzCY><sizeVertCX>445783</sizeVertCX><sizeVertCY>198630</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+
