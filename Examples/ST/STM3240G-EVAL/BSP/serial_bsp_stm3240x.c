@@ -405,9 +405,6 @@ static  void  SerialBSP_STM32_USART2_CfgGPIO (CPU_BOOLEAN   flow_ctrl,
 static  void  SerialBSP_STM32_USART3_CfgGPIO (CPU_BOOLEAN   flow_ctrl,
                                               SERIAL_ERR   *perr)
 {
-    GPIO_InitTypeDef  GPIO_InitStructure;
-
-
     if (flow_ctrl == DEF_ENABLED) {
         *perr = SERIAL_ERR_DRV_INVALID;
          return;

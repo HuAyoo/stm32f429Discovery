@@ -89,6 +89,9 @@ static  OS_STK       AppTaskEvent1Stk[APP_CFG_TASK_OBJ_STK_SIZE];
                                                                 /* ------------ FLOATING POINT TEST TASK -------------- */
 static  OS_STK       AppTaskEq0FpStk[APP_CFG_TASK_EQ_STK_SIZE];
 static  OS_STK       AppTaskEq1FpStk[APP_CFG_TASK_EQ_STK_SIZE];
+/*led的交替闪烁任务建立*/
+static  OS_STK       AppTaskLedGreenStk[APP_CFG_TASK_START_STK_SIZE];
+static  OS_STK       AppTaskLedRedStk[APP_CFG_TASK_START_STK_SIZE];
 
 #if (OS_SEM_EN > 0u)
 static  OS_EVENT    *AppTraceSem;
@@ -127,6 +130,8 @@ static  void  AppTaskEq1Fp   (void  *p_arg);                   /* Floating Point
 static  void  AppTaskEvent0  (void  *p_arg);
 static  void  AppTaskEvent1  (void  *p_arg);
 
+static void LED_Green(void * p_arg);
+static void LED_Red(void * p_arg);
 
 /*
 *********************************************************************************************************
@@ -151,13 +156,9 @@ static  void  AppTaskEvent1  (void  *p_arg);
 
 int main(void)
 {
-#if (OS_TASK_NAME_EN > 0)
-    CPU_INT08U  err;
-#endif
-
     HAL_Init();                                                 /* See Note 1.                                          */
 
-    Mem_Init();                                                 /* Initialize Memory Managment Module                   */
+    Mem_Init();                                                 /* Initialize Memory Managment Module  分配动态内存                 */
     Math_Init();                                                /* Initialize Mathematical Module                       */
 
     BSP_IntDisAll();                                            /* Disable all Interrupts.                              */
@@ -174,17 +175,7 @@ int main(void)
                      0,
                     (OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
 
-#if (OS_TASK_NAME_EN > 0)
-    OSTaskNameSet(         APP_CFG_TASK_START_PRIO,
-                  (INT8U *)"Start Task",
-                           &err);
-#endif
-
     OSStart();                                                  /* Start multitasking (i.e. give control to uC/OS-II).  */
-
-    while (DEF_ON) {                                            /* Should Never Get Here.                               */
-        ;
-    }
 }
 
 
@@ -216,35 +207,52 @@ static  void  AppTaskStart (void *p_arg)
 #endif
 
 #ifdef CPU_CFG_INT_DIS_MEAS_EN
-    CPU_IntDisMeasMaxCurReset();
+    CPU_IntDisMeasMaxCurReset();//暂时不需要这种统计功能。
 #endif
 
-#if (APP_CFG_SERIAL_EN == DEF_ENABLED)
+#if (APP_CFG_SERIAL_EN == DEF_ENABLED)//串口初始化，打印出相应的数据
     App_SerialInit();                                           /* Initialize Serial Communication for Application ...  */
 #endif
+	/*创建需要的任务*/
+    OSTaskCreateExt( LED_Green,                              /* Create the start task                                */
+                     0,
+                    &AppTaskLedGreenStk[APP_CFG_TASK_START_STK_SIZE - 1],
+                     APP_CFG_TASK_LED_GREEN_PRIO,
+                     APP_CFG_TASK_LED_GREEN_PRIO,
+                    &AppTaskLedGreenStk[0],
+                     APP_CFG_TASK_START_STK_SIZE,
+                     0,
+                    (OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
 
-    APP_TRACE_DBG(("Creating Application Events\n\r"));
-    AppEventCreate();                                           /* Create Applicaiton kernel objects                    */
+	OSTaskCreateExt( LED_Red,								/* Create the start task								*/
+					 0,
+					&AppTaskLedRedStk[APP_CFG_TASK_START_STK_SIZE - 1],
+					 APP_CFG_TASK_LED_RED_PRIO,
+					 APP_CFG_TASK_LED_RED_PRIO,
+					&AppTaskLedRedStk[0],
+					 APP_CFG_TASK_START_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
 
-    APP_TRACE_DBG(("Creating Application Tasks\n\r"));
-//    AppTaskCreate();                                            /* Create Application tasks                             */
-
-    BSP_LED_Off(0u);
-    AppProbe_CtrVal = 0u;
-    AppProbe_Slider = 200u;
-
-    while (DEF_TRUE) {                                          /* Task body, always written as an infinite loop.       */
-        BSP_LED_Toggle(0u);
-        OSTimeDlyHMSM(0u, 0u, 0u, (300));
-
-        AppProbe_CtrVal++;
-
-        if (AppProbe_CtrVal >= DEF_INT_32_MASK) {
-            AppProbe_CtrVal = 0u;
-        }
-    }
 }
-
+void LED_Green(void *p_arg)
+{
+	APP_TRACE_DBG(("Green led flash\n\r"));
+	while(DEF_TRUE){
+		BSP_LED_Toggle( 1);//点亮绿色的灯
+		APP_TRACE_DBG(("Green led flash\n\r"));
+		OSTimeDlyHMSM(0u, 0u, 0u, (1000));//绿灯一秒闪烁
+	}
+}
+void LED_Red(void *p_arg)
+{
+	APP_TRACE_DBG(("Red led flash\n\r"));
+	while(DEF_TRUE){
+		BSP_LED_Toggle(2);//点亮绿色的灯
+		APP_TRACE_DBG(("red led flash\n\r"));
+		OSTimeDlyHMSM(0u, 0u, 0u, (300));//绿灯一秒闪烁
+	}
+}
 /*
 *********************************************************************************************************
 *                                          AppTaskCreate()

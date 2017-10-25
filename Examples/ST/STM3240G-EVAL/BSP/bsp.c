@@ -203,6 +203,7 @@ void  BSP_Init (void)
     }
 
     BSP_LED_Init();                                             /* Init LEDs.                                           */
+    BSP_LED_Off(0u);      									     /* Close LEDs.                                           */
 
 #ifdef TRACE_EN                                                 /* See project / compiler preprocessor options.         */
     BSP_CPU_REG_DBGMCU_CR |=  BSP_DBGMCU_CR_TRACE_IOEN_MASK;    /* Enable tracing (see Note #2).                        */
@@ -336,17 +337,6 @@ static void  BSP_LED_Init()
     gpio_init.Speed = GPIO_SPEED_HIGH;
 
     HAL_GPIO_Init(GPIOB, &gpio_init);
-
-/*    BSP_PeriphEn(BSP_PERIPH_ID_GPIOI);                           Configure GPIOI for LED3                  
-
-    gpio_init.Pin = BSP_GPIOI_LED3;
-    HAL_GPIO_Init(GPIOI, &gpio_init);           */
-
-
-       /*    BSP_PeriphEn(BSP_PERIPH_ID_GPIOC);                    Configure GPIOC for LED4                             
-
-    gpio_init.Pin = BSP_GPIOC_LED4;
-    HAL_GPIO_Init(GPIOC, &gpio_init);*/
 }
 
 
@@ -381,22 +371,13 @@ void  BSP_LED_On (CPU_INT08U  led)
 
 
         case 1u:
-             HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED1, GPIO_PIN_RESET);
+             HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED1, GPIO_PIN_RESET);//ÂÌÉ«
              break;
 
 
         case 2u:
-             HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED2, GPIO_PIN_RESET);
+             HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED2, GPIO_PIN_RESET);//ºìÉ«
              break;
-
-
-        case 3u:
-             break;
-
-
-        case 4u:
-             break;
-
 
         default:
              break;
@@ -443,15 +424,6 @@ void  BSP_LED_Off (CPU_INT08U led)
              HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED2, GPIO_PIN_SET);
              break;
 
-
-        case 3u:
-             break;
-
-
-        case 4u:
-             break;
-
-
         default:
              break;
     }
@@ -496,15 +468,6 @@ void  BSP_LED_Toggle (CPU_INT08U  led)
         case 2u:
              HAL_GPIO_TogglePin(GPIOB, BSP_GPIOG_LED2);
              break;
-
-
-        case 3u:
-             break;
-
-
-        case 4u:
-             break;
-
 
         default:
              break;

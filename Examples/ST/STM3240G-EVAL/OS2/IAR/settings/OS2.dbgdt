@@ -19,7 +19,7 @@
           
           
           
-        <Column0>323</Column0><Column1>22</Column1><Column2>16</Column2><Column3>0</Column3></ColumnWidths>
+        <Column0>95</Column0><Column1>22</Column1><Column2>16</Column2><Column3>0</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -49,7 +49,7 @@
           
           
           
-        <item>OSIdleCtr</item><item></item></expressions>
+        <item>OSIdleCtr</item><item/></expressions>
         <col-names>
           
           
@@ -68,7 +68,7 @@
       
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-23296-24990</Identity>
@@ -84,7 +84,7 @@
           </Tab>
         <Tab><Identity>TabID-25043-30448</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab><Tab><Identity>TabID-18540-30774</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
         <Tabs>
           <Tab>
             <Identity>TabID-1277-24993</Identity>
@@ -96,20 +96,20 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Ports\ARM-Cortex-M4\Generic\IAR\os_cpu_c.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>183</YPos2><SelStart2>8182</SelStart2><SelEnd2>8182</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app_serial.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>153</YPos2><SelStart2>6249</SelStart2><SelEnd2>6249</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Source\os_core.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>1781</YPos2><SelStart2>76566</SelStart2><SelEnd2>76566</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Software\uCOS-II\Ports\ARM-Cortex-M4\Generic\IAR\os_cpu_a.asm</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>137</YPos2><SelStart2>6461</SelStart2><SelEnd2>6461</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app_hooks.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>138</YPos2><SelStart2>6546</SelStart2><SelEnd2>6546</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\app.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>202</YPos2><SelStart2>9908</SelStart2><SelEnd2>9908</SelEnd2></Tab><ActiveTab>5</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\BSP\serial_bsp_stm3240x.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>365</YPos2><SelStart2>16509</SelStart2><SelEnd2>16509</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00F75220><key>iaridepm.enu1</key></Toolbar-00F75220></Sizes></Row0><Row1><Sizes><Toolbar-10AFECF8><key>debuggergui.enu1</key></Toolbar-10AFECF8><Toolbar-148C69E0><key>armjlink2.enu1</key></Toolbar-148C69E0></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>692</Bottom><Right>398</Right><x>-2</x><y>-2</y><xscreen>407</xscreen><yscreen>203</yscreen><sizeHorzCX>445783</sizeHorzCX><sizeHorzCY>198630</sizeHorzCY><sizeVertCX>438116</sizeVertCX><sizeVertCY>679061</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>261</Bottom><Right>915</Right><x>-2</x><y>-2</y><xscreen>917</xscreen><yscreen>263</yscreen><sizeHorzCX>1004381</sizeHorzCX><sizeHorzCY>257339</sizeHorzCY><sizeVertCX>445783</sizeVertCX><sizeVertCY>198630</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-028151D8><key>iaridepm.enu1</key></Toolbar-028151D8></Sizes></Row0><Row1><Sizes><Toolbar-123E9C40><key>debuggergui.enu1</key></Toolbar-123E9C40><Toolbar-123E9E98><key>armjlink2.enu1</key></Toolbar-123E9E98></Sizes></Row1></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>688</Bottom><Right>170</Right><x>-2</x><y>-2</y><xscreen>828</xscreen><yscreen>206</yscreen><sizeHorzCX>906900</sizeHorzCX><sizeHorzCY>201566</sizeHorzCY><sizeVertCX>188390</sizeVertCX><sizeVertCY>675147</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>265</Bottom><Right>915</Right><x>-2</x><y>-2</y><xscreen>917</xscreen><yscreen>267</yscreen><sizeHorzCX>1004381</sizeHorzCX><sizeHorzCY>261252</sizeHorzCY><sizeVertCX>906900</sizeVertCX><sizeVertCY>201566</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

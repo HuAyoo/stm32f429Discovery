@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 /Examples\ST\STM3240G-EVAL\OS2\IAR\FLASH
+/stm32f429.si4project
 # Object files
 *.o
 *.ko
