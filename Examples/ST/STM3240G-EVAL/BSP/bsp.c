@@ -203,7 +203,7 @@ void  BSP_Init (void)
     }
 
     BSP_LED_Init();                                             /* Init LEDs.                                           */
-    BSP_LED_Off(0u);      									     /* Close LEDs.                                           */
+	KEY_Init();
 
 #ifdef TRACE_EN                                                 /* See project / compiler preprocessor options.         */
     BSP_CPU_REG_DBGMCU_CR |=  BSP_DBGMCU_CR_TRACE_IOEN_MASK;    /* Enable tracing (see Note #2).                        */
@@ -414,11 +414,9 @@ void  BSP_LED_Off (CPU_INT08U led)
              HAL_GPIO_WritePin(GPIOB, (BSP_GPIOG_LED1 | BSP_GPIOG_LED2), GPIO_PIN_SET);
              break;
 
-
         case 1u:
              HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED1, GPIO_PIN_SET);
              break;
-
 
         case 2u:
              HAL_GPIO_WritePin(GPIOB, BSP_GPIOG_LED2, GPIO_PIN_SET);

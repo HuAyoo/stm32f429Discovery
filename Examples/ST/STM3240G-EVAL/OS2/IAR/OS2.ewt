@@ -1243,6 +1243,18 @@
     </file>
   </group>
   <group>
+    <name>Peripheral</name>
+    <group>
+      <name>key</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\BSP\KEY\key.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\BSP\KEY\key.h</name>
+      </file>
+    </group>
+  </group>
+  <group>
     <name>STM32CubeF4</name>
     <group>
       <name>Drivers</name>

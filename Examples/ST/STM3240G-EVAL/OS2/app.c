@@ -61,42 +61,57 @@
 
 /*
 *********************************************************************************************************
-*                                            LOCAL DEFINES
-*********************************************************************************************************
-*/
-
-#define  APP_TASK_EQ_0_ITERATION_NBR              16u
-#define  APP_TASK_EQ_1_ITERATION_NBR              18u
-
-
-/*
-*********************************************************************************************************
 *                                       LOCAL GLOBAL VARIABLES
 *********************************************************************************************************
 */
 
-                                                                /* --------------- APPLICATION GLOBALS ---------------- */
-static  OS_STK       AppTaskStartStk[APP_CFG_TASK_START_STK_SIZE];
+						/*开始任务*/
+#define  APP_CFG_TASK_START_PRIO                10u							//开始任务的优先级
+#define  APP_CFG_TASK_START_STK_SIZE            256u						//开始任务的堆栈大小
+static  OS_STK       AppTaskStartStk[APP_CFG_TASK_START_STK_SIZE];		    //开始任务的堆栈
+static  void  AppTaskStart   (void  *p_arg);								//开任务函数
+						/*按键任务*/
+#define APP_KEY_TASK_PRIO                   2u							   //按键任务的优先级最高
+#define APP_KEY_TASK_STK_SIZE 				128U						   //按键任务的堆栈大小
+static OS_STK    APPKEYTASKSTK[APP_KEY_TASK_STK_SIZE];					   //按键任务的堆栈
+static void AppKeyTask(void *p_arg);									   //按键任务处理函数
+						/*按键任务分配任务*/
+#define APP_KEY_PRO_TASK_PRIO 				3U								//按键任务处理任务的优先级
+#define APP_KEY_PRO_TASK_STK_SIZE 			128U							//按键任务处理任务堆栈大小
+static OS_STK AppKeyProStk[APP_KEY_PRO_TASK_STK_SIZE];						//按键任务处理任务的堆栈
+static void	AppKeyProTask(void *p_arg);										//按键任务处理任务的函数
+						/*LED全部关闭*/
+#define APP_LED_CLOSED_TASK_PRIO			4U								//关闭所有的led
+#define APP_LED_CLOSED_TASK_STK_SIZE 		128U							//led关闭函数的堆栈大小
+static OS_STK AppLedClosedStk[APP_LED_CLOSED_TASK_STK_SIZE];				//led关闭函数的堆栈
+static void AppLedClosedTask(void *p_arg);									//led关闭函数
+						/*LED全部打开*/
+#define APP_LED_OPEN_TASK_PRIO			5U								//打开所有的led
+#define APP_LED_OPEN_TASK_STK_SIZE 		128U							//led打开函数的堆栈大小
+static OS_STK AppLedOpenStk[APP_LED_OPEN_TASK_STK_SIZE];				//led打开函数的堆栈
+static void AppLedOpenTask(void *p_arg);									//led打开函数
+						/*LED红灯打开*/
+#define APP_LED_RED_TASK_PRIO			6U								//led红灯打开
+#define APP_LED_RED_TASK_STK_SIZE 		128U							//led红灯打开的堆栈大小
+static OS_STK AppLedRedStk[APP_LED_RED_TASK_STK_SIZE];				//led红灯的堆栈
+static void AppLedRedTask(void *p_arg);									//led红灯函数
+						/*LED绿灯打开*/
+#define APP_LED_GREEN_TASK_PRIO			7U								//led绿灯打开
+#define APP_LED_GREEN_TASK_STK_SIZE 		128U							//led绿灯打开任务堆栈大小
+static OS_STK AppLedGreenStk[APP_LED_GREEN_TASK_STK_SIZE];				//led绿灯打开函数的堆栈
+static void AppLedGreenTask(void *p_arg);									//led打开函数
 
-
-/*led的交替闪烁任务建立*/
-static  OS_STK       AppTaskLedGreenStk[APP_CFG_TASK_START_STK_SIZE];
-static  OS_STK       AppTaskLedRedStk[APP_CFG_TASK_START_STK_SIZE];
+			/*信号量*/
+OS_EVENT * sem_led_close;		
+OS_EVENT * sem_led_open;				  
+OS_EVENT * sem_led_red;		
+OS_EVENT * sem_led_green;				  
+			/*按键邮箱事件指针*/
+OS_EVENT * msg_key;			//按键邮箱事件块指针
 
 #if (OS_SEM_EN > 0u)
 static  OS_EVENT    *AppTraceSem;
 #endif
-
-
-/*
-*********************************************************************************************************
-*                                         FUNCTION PROTOTYPES
-*********************************************************************************************************
-*/
-static  void  AppTaskStart   (void  *p_arg);
-
-static void LED_Green(void * p_arg);
-static void LED_Red(void * p_arg);
 
 /*
 *********************************************************************************************************
@@ -143,81 +158,164 @@ int main(void)
     OSStart();                                                  /* Start multitasking (i.e. give control to uC/OS-II).  */
 }
 
-
-/*
-*********************************************************************************************************
-*                                          STARTUP TASK
-*
-* Description : This is an example of a startup task.  As mentioned in the book's text, you MUST
-*               initialize the ticker only once multitasking has started.
-*
-* Arguments   : p_arg   is the argument passed to 'AppTaskStart()' by 'OSTaskCreate()'.
-*
-* Returns     : none
-*
-* Notes       : 1) The first line of code is used to prevent a compiler warning because 'p_arg' is not
-*                  used.  The compiler should not generate any code for this statement.
-*********************************************************************************************************
-*/
-
 static  void  AppTaskStart (void *p_arg)
 {
    (void)p_arg;
 
     BSP_Init();                                                 /* Initialize BSP functions                             */
     CPU_Init();                                                 /* Initialize the uC/CPU services                       */
-
-#if (OS_TASK_STAT_EN > 0)
+	/*信号量和邮箱初始化*/
+	msg_key = OSMboxCreate((void *) 0);
+	sem_led_close = OSSemCreate(0);
+	sem_led_open    = OSSemCreate(0);
+	sem_led_red     = OSSemCreate(0);
+	sem_led_green = OSSemCreate(0);
     OSStatInit();                                               /* Determine CPU capacity                               */
-#endif
-
-#ifdef CPU_CFG_INT_DIS_MEAS_EN
-    CPU_IntDisMeasMaxCurReset();//暂时不需要这种统计功能。
-#endif
 
 #if (APP_CFG_SERIAL_EN == DEF_ENABLED)//串口初始化，打印出相应的数据
     App_SerialInit();                                           /* Initialize Serial Communication for Application ...  */
 #endif
 	/*创建需要的任务*/
-    OSTaskCreateExt( LED_Green,                              /* Create the start task                                */
-                     0,
-                    &AppTaskLedGreenStk[APP_CFG_TASK_START_STK_SIZE - 1],
-                     APP_CFG_TASK_LED_GREEN_PRIO,
-                     APP_CFG_TASK_LED_GREEN_PRIO,
-                    &AppTaskLedGreenStk[0],
-                     APP_CFG_TASK_START_STK_SIZE,
-                     0,
-                    (OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
 
-	OSTaskCreateExt( LED_Red,								/* Create the start task								*/
+	OSTaskCreateExt( AppLedGreenTask,								/* Create the start task								*/
 					 0,
-					&AppTaskLedRedStk[APP_CFG_TASK_START_STK_SIZE - 1],
-					 APP_CFG_TASK_LED_RED_PRIO,
-					 APP_CFG_TASK_LED_RED_PRIO,
-					&AppTaskLedRedStk[0],
-					 APP_CFG_TASK_START_STK_SIZE,
+					&AppLedGreenStk[APP_LED_GREEN_TASK_STK_SIZE - 1],
+					 APP_LED_GREEN_TASK_PRIO,
+					 APP_LED_GREEN_TASK_PRIO,
+					&AppLedGreenStk[0],
+					 APP_LED_GREEN_TASK_STK_SIZE,
 					 0,
 					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	
+	OSTaskCreateExt( AppLedRedTask,								/* Create the start task								*/
+					 0,
+					&AppLedRedStk[APP_LED_RED_TASK_STK_SIZE - 1],
+					 APP_LED_RED_TASK_PRIO,
+					 APP_LED_RED_TASK_PRIO,
+					&AppLedRedStk[0],
+					 APP_LED_RED_TASK_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	OSTaskCreateExt( AppLedOpenTask,								/* Create the start task								*/
+					 0,
+					&AppLedOpenStk[APP_LED_OPEN_TASK_STK_SIZE - 1],
+					 APP_LED_OPEN_TASK_PRIO,
+					 APP_LED_OPEN_TASK_PRIO,
+					&AppLedOpenStk[0],
+					 APP_LED_OPEN_TASK_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	OSTaskCreateExt( AppLedClosedTask,								/* Create the start task								*/
+					 0,
+					&AppLedClosedStk[APP_LED_CLOSED_TASK_STK_SIZE - 1],
+					 APP_LED_CLOSED_TASK_PRIO,
+					 APP_LED_CLOSED_TASK_PRIO,
+					&AppLedClosedStk[0],
+					 APP_LED_CLOSED_TASK_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	OSTaskCreateExt( AppKeyProTask,								/* Create the start task								*/
+					 0,
+					&AppKeyProStk[APP_KEY_PRO_TASK_STK_SIZE - 1],
+					 APP_KEY_PRO_TASK_PRIO,
+					 APP_KEY_PRO_TASK_PRIO,
+					&AppKeyProStk[0],
+					 APP_KEY_PRO_TASK_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	OSTaskCreateExt( AppKeyTask,								/* Create the start task								*/
+					 0,
+					&APPKEYTASKSTK[APP_KEY_TASK_STK_SIZE - 1],
+					 APP_KEY_TASK_PRIO,
+					 APP_KEY_TASK_PRIO,
+					&APPKEYTASKSTK[0],
+					 APP_KEY_TASK_STK_SIZE,
+					 0,
+					(OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR));
+	OSTaskSuspend(APP_CFG_TASK_START_PRIO); //挂起开始任务
+}
+
+
+void AppKeyTask(void * p_arg)
+{
+	CPU_INT08U key;		    						 
+	while(1)
+	{
+		key=KEY_Scan(0);   
+		if(key)OSMboxPost(msg_key,(void*)key);//发送消息
+		OSTimeDlyHMSM(0u, 0u, 0u, 10);
+	}
 
 }
-void LED_Green(void *p_arg)
+void AppKeyProTask(void * p_arg)
 {
-	APP_TRACE_DBG(("Green led flash\n\r"));
-	while(DEF_TRUE){
-		BSP_LED_Toggle( 1);//点亮绿色的灯
-		APP_TRACE_DBG(("Green led flash\n\r"));
-		OSTimeDlyHMSM(0u, 0u, 0u, (1000));//绿灯一秒闪烁
+	CPU_INT32U key=0;	
+	CPU_INT08U err;	
+	while(1)
+	{
+		key=(CPU_INT32U)OSMboxPend(msg_key,10,&err);   
+		switch(key){
+			case 2://down				
+				OSSemPost(sem_led_close);
+				break;
+			case 3://left
+			OSSemPost(sem_led_red);
+				break;
+			case 1://right
+			OSSemPost(sem_led_green);
+				break;
+			case 4://up
+			OSSemPost(sem_led_open);
+				break;
+			default:
+				break;
+		}
 	}
 }
 
-void LED_Red(void *p_arg)
-{
-	APP_TRACE_DBG(("Red led flash\n\r"));
-	while(DEF_TRUE){
-		BSP_LED_Toggle(2);//点亮绿色的灯
-		APP_TRACE_DBG(("red led flash\n\r"));
-		OSTimeDlyHMSM(0u, 0u, 0u, (2000));//绿灯一秒闪烁
-	}
+void AppLedClosedTask(void * p_arg){
+    CPU_INT08U err;
+	while(1)
+	{  
+        OSSemPend(sem_led_close,0,&err);     //请求信号量       
+        BSP_LED_Off(0);
+        OSTimeDlyHMSM(0, 0, 0, 10);
+	}									 
+
+}
+void AppLedOpenTask(void * p_arg){
+    CPU_INT08U err;
+	while(1)
+	{  
+        OSSemPend(sem_led_open,0,&err);     //请求信号量       
+        BSP_LED_On(0);
+        OSTimeDlyHMSM(0, 0, 0, 10);
+	}									 
+
+}
+void AppLedRedTask(void * p_arg){
+    CPU_INT08U err;
+	while(1)
+	{  
+        OSSemPend(sem_led_red,0,&err);     //请求信号量       
+        BSP_LED_On(2);
+        BSP_LED_Off(1);
+
+        OSTimeDlyHMSM(0, 0, 0, 10);
+	}									 
+
+}
+void AppLedGreenTask(void * p_arg){
+    CPU_INT08U err;
+	while(1)
+	{  
+        OSSemPend(sem_led_green,0,&err);     //请求信号量       
+        BSP_LED_On(1);    
+        BSP_LED_Off(2);
+
+        OSTimeDlyHMSM(0, 0, 0, 10);
+	}									 
+
 }
 
 /*

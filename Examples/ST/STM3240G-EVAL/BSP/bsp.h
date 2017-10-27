@@ -72,7 +72,7 @@
 
 #include  <cpu.h>
 #include  <cpu_core.h>
-
+#include  <key.h>
 #include  <lib_def.h>
 
 

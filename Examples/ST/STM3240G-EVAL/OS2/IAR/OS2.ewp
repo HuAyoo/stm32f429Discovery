@@ -330,6 +330,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\Software\uC-Serial\Line</state>
           <state>$PROJ_DIR$\..\..\..\..\..\Software\uC-Serial\OS</state>
           <state>$PROJ_DIR$\..\..\..\..\..\Software\uC-Serial\Source</state>
+          <state>E:\TEMP-PRJ\stm32f429Discovery\Examples\ST\STM3240G-EVAL\BSP\KEY</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1063,6 +1064,18 @@
     <file>
       <name>$PROJ_DIR$\..\..\BSP\serial_bsp_stm3240x.h</name>
     </file>
+  </group>
+  <group>
+    <name>Peripheral</name>
+    <group>
+      <name>key</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\BSP\KEY\key.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\BSP\KEY\key.h</name>
+      </file>
+    </group>
   </group>
   <group>
     <name>STM32CubeF4</name>
